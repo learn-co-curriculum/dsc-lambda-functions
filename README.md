@@ -1,7 +1,19 @@
 
-## Lambda Functions
+# Lambda Functions
 
-Lambda functions are often a convenient way to write *throw away* functions on the fly. If you need to write a more complicated function you may still need to use the more formal `def` method, but lambda functions provide a quick and concise way to write functions. For example, let's say you want to count the number of words in each yelp review.
+## Introduction
+
+Lambda functions are often a convenient way to write *throw away* functions on the fly. If you need to write a more complicated function you may still need to use the more formal `def` method, but lambda functions provide a quick and concise way to write functions.
+
+## Objectives
+You will be able to:
+* Understand what lambda functions are and why they are useful
+* Use lambda functions to transform data within lists and DataFrames
+
+
+## An Example
+
+Let's say you want to count the number of words in each yelp review.
 
 
 ```python
@@ -214,7 +226,6 @@ sorted(names, key=lambda x: x.split()[1])
 
 
 
+## Summary
 
-```python
-
-```
+Lambda functions can be a convenient way to write "throw away" functions that you want to declare inline. In the next lesson we'll give you some practice with creating them!
