@@ -458,19 +458,19 @@ Useful for creating groups of a set size. For example: groups of ten, groups of 
 ```python
 #Generalize the pattern: every other
 for i in range(10):
-    print('i: {}, i%2: {}'.format(i, i//3))
+    print('i: {}, i//2: {}'.format(i, i//3))
 ```
 
-    i: 0, i%2: 0
-    i: 1, i%2: 0
-    i: 2, i%2: 0
-    i: 3, i%2: 1
-    i: 4, i%2: 1
-    i: 5, i%2: 1
-    i: 6, i%2: 2
-    i: 7, i%2: 2
-    i: 8, i%2: 2
-    i: 9, i%2: 3
+    i: 0, i//2: 0
+    i: 1, i//2: 0
+    i: 2, i//2: 0
+    i: 3, i//2: 1
+    i: 4, i//2: 1
+    i: 5, i//2: 1
+    i: 6, i//2: 2
+    i: 7, i//2: 2
+    i: 8, i//2: 2
+    i: 9, i//2: 3
 
 
 ### Combining % and //
