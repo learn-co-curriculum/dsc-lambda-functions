@@ -124,7 +124,7 @@ df['text'].map(lambda review_text: len(review_text.split())).head()
 
 
 
-# Lambda functions with conditionals
+## Lambda functions with conditionals
 Lambda functions can also accept some conditionals if chained in a list comprehension
 
 
@@ -144,11 +144,11 @@ df['text'].map(lambda x: 'Good' if any([word in x.lower() for word in ['awesome'
 
 
 
-# Note: 
+## Note
 The above is terribly poor style and does in no way represent [pep-8](https://www.python.org/dev/peps/pep-0008/) or pythonic style. (For example, no line should be over 72 characters according to pep-8; the previous line was 127 characters.) That said, it is an interesting demonstration of chaining a conditional, the any method and a list comprehension all inside a lambda function!   
 Shew!
 
-# Returning to a more manageable example...
+## Returning to a more manageable example...
 
 Perhaps we want to naively select the year from the date string rather then convert it to a datetime object.
 
@@ -169,7 +169,7 @@ df.date.map(lambda x: x[:4]).head()
 
 
 
-# Lambda Functions are also useful within the sort method
+## Lambda Functions are also useful within the sort method
 
 
 
@@ -226,7 +226,7 @@ sorted(names, key=lambda x: x.split()[1])
 
 
 
-# A General Approach to Writing [Data Transformation] Functions
+## A General Approach to Writing [Data Transformation] Functions
 
 Above, we've covered a lot of the syntax of lambda functions, but the thought process for writing these complex transformations was not transparent. Let's take a minute to discuss some approaches to tackling these problems.
 
@@ -334,7 +334,7 @@ len(example.split())
 
 
 
-### Then return to solving for all!
+## Then return to solving for all!
 
 
 ```python
@@ -353,7 +353,7 @@ df.text.map(lambda x: len(x.split())).head()
 
 
 
-### Watch for Edge Cases and Exceptions
+## Watch for Edge Cases and Exceptions
 
 When generalizing from a single case to all cases, it's important to consider exceptions or edge cases. For example, in the above example, you might wonder whether extra spaces or punctuations effects the output.
 
@@ -371,7 +371,7 @@ When generalizing from a single case to all cases, it's important to consider ex
 
 As you can see, extra spaces won't break our fucntion, but missing a space after punctuation will. Perhaps this is a rare enough event that we don't worry further, but exceptions are always something to consider when writing functions.
 
-# Other Common Patterns: the % and // operators
+## Other Common Patterns: the % and // operators
 
 Another common pattern that you may find very useful is the modulus or remainder operator (%), as well as the floor division operator (//). These are both very useful when you want behavior such as 'every fourth element' or 'groups of three consecutive elements'. Let's investigate a couple of examples.
 
@@ -519,7 +519,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_41_0.png)
+![png](index_files/index_39_0.png)
 
 
 ## Summary
