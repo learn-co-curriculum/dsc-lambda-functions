@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Lambda functions are often a convenient way to write *throw away* functions on the fly. If you need to write a more complicated function you may still need to use the more formal `def` method, but lambda functions provide a quick and concise way to write functions.
+Lambda functions are often a convenient way to write *throw-away* functions on the fly. If you need to write a more complicated function you may still need to use the more formal `def` method, but lambda functions provide a quick and concise way to write functions.
 
 ## Objectives
 You will be able to:
@@ -145,7 +145,7 @@ df['text'].map(lambda x: 'Good' if any([word in x.lower() for word in ['awesome'
 
 
 ## Note
-The above is terribly poor style and does in no way represent [pep-8](https://www.python.org/dev/peps/pep-0008/) or pythonic style. (For example, no line should be over 72 characters according to pep-8; the previous line was 127 characters.) That said, it is an interesting demonstration of chaining a conditional, the any method and a list comprehension all inside a lambda function!   
+The above is terribly poor style and does in no way represent [pep-8](https://www.python.org/dev/peps/pep-0008/) or Pythonic style. (For example, no line should be over 72 characters according to pep-8; the previous line was 127 characters.) That said, it is an interesting demonstration of chaining a conditional, any method, and a list comprehension all inside a lambda function!   
 Shew!
 
 ## Returning to a more manageable example...
@@ -232,9 +232,9 @@ Above, we've covered a lot of the syntax of lambda functions, but the thought pr
 
 ## Experiment and Solve for Individual Cases First
 
-Before trying to write a function to apply to an entire series, its typically easier to attempt to solve for an individual case. For example, if we're trying to determine the number of words in a review, we can try and do this for a single review first.
+Before trying to write a function to apply to an entire series, it's typically easier to attempt to solve for an individual case. For example, if we're trying to determine the number of words in a review, we can try and do this for a single review first.
 
-First choose an example field that you'll be applying the function to.
+First, choose an example field that you'll be applying the function to.
 
 
 ```python
@@ -519,7 +519,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_39_0.png)
+![png](index_files/index_37_0.png)
 
 
 ## Summary
