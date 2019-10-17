@@ -7,18 +7,19 @@ Lambda functions are often a convenient way to write *throw-away* functions on t
 
 ## Objectives
 You will be able to:
-* Understand what lambda functions are and why they are useful
-* Use lambda functions to transform data within lists and DataFrames
+* Describe the purpose of lambda functions, when they should be employed, and their limitations   
+* Create lambda functions to use as arguments of other functions   
+* Use the `.map()` or `.apply()` method to apply a function to a pandas series or DataFrame
 
 
-## An Example
+## Example
 
 Let's say you want to count the number of words in each yelp review.
 
 
 ```python
 import pandas as pd
-df = pd.read_csv('Yelp_Reviews.csv')
+df = pd.read_csv('Yelp_Reviews.csv', index_col=0)
 df.head(2)
 ```
 
@@ -43,7 +44,6 @@ df.head(2)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
       <th>business_id</th>
       <th>cool</th>
       <th>date</th>
@@ -57,8 +57,7 @@ df.head(2)
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>1</td>
+      <th>1</th>
       <td>pomGBqfbxcqPv14c3XH-ZQ</td>
       <td>0</td>
       <td>2012-11-13</td>
@@ -70,8 +69,7 @@ df.head(2)
       <td>msQe1u7Z_XuqjGoqhB0J5g</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>2</td>
+      <th>2</th>
       <td>jtQARsP6P-LbkyjbO1qNGg</td>
       <td>1</td>
       <td>2014-10-23</td>
@@ -96,16 +94,16 @@ df['text'].map(lambda x: len(x.split())).head()
 
 
 
-    0    58
-    1    30
-    2    30
-    3    82
-    4    32
+    1     58
+    2     30
+    4     30
+    5     82
+    10    32
     Name: text, dtype: int64
 
 
 
-Similar to defining functions in general or naming the iterable in for loops, the variable that you use after calling the `lambda` keyword does not matter
+Similar to defining functions in general or naming the iterable in `for` loops, the variable that you use after calling the `lambda` keyword does not matter: 
 
 
 ```python
@@ -115,11 +113,11 @@ df['text'].map(lambda review_text: len(review_text.split())).head()
 
 
 
-    0    58
-    1    30
-    2    30
-    3    82
-    4    32
+    1     58
+    2     30
+    4     30
+    5     82
+    10    32
     Name: text, dtype: int64
 
 
@@ -135,22 +133,22 @@ df['text'].map(lambda x: 'Good' if any([word in x.lower() for word in ['awesome'
 
 
 
-    0    Good
-    1     Bad
-    2    Good
-    3     Bad
-    4     Bad
+    1     Good
+    2      Bad
+    4     Good
+    5      Bad
+    10     Bad
     Name: text, dtype: object
 
 
 
 ## Note
-The above is terribly poor style and does in no way represent [pep-8](https://www.python.org/dev/peps/pep-0008/) or Pythonic style. (For example, no line should be over 72 characters according to pep-8; the previous line was 127 characters.) That said, it is an interesting demonstration of chaining a conditional, any method, and a list comprehension all inside a lambda function!   
+The above is terribly poor style and does in no way represent [PEP 8](https://www.python.org/dev/peps/pep-0008/) or Pythonic style. (For example, no line should be over 72 characters according to PEP 8; the previous line was 127 characters.) That said, it is an interesting demonstration of chaining a conditional, any method, and a list comprehension all inside a lambda function!   
 Shew!
 
 ## Returning to a more manageable example...
 
-Perhaps we want to naively select the year from the date string rather then convert it to a datetime object.
+Perhaps we want to naively select the year from the date string rather than convert it to a datetime object.
 
 
 ```python
@@ -160,21 +158,21 @@ df.date.map(lambda x: x[:4]).head()
 
 
 
-    0    2012
-    1    2014
-    2    2014
-    3    2011
-    4    2016
+    1     2012
+    2     2014
+    4     2014
+    5     2011
+    10    2016
     Name: date, dtype: object
 
 
 
-## Lambda Functions are also useful within the sort method
+## Lambda functions are also useful within the `sort()` function
 
 
 
 ```python
-#Without a key
+# Without a key
 names = ['Miriam Marks','Sidney Baird','Elaine Barrera','Eddie Reeves','Marley Beard',
          'Jaiden Liu','Bethany Martin','Stephen Rios','Audrey Mayer','Kameron Davidson',
          'Carter Wong','Teagan Bennett']
@@ -201,7 +199,7 @@ sorted(names)
 
 
 ```python
-#Sorting by last name
+# Sorting by last name
 names = ['Miriam Marks','Sidney Baird','Elaine Barrera','Eddie Reeves','Marley Beard',
          'Jaiden Liu','Bethany Martin','Stephen Rios','Audrey Mayer','Kameron Davidson',
 'Teagan Bennett']
@@ -226,11 +224,11 @@ sorted(names, key=lambda x: x.split()[1])
 
 
 
-## A General Approach to Writing [Data Transformation] Functions
+## A general approach to writing [Data Transformation] Functions
 
 Above, we've covered a lot of the syntax of lambda functions, but the thought process for writing these complex transformations was not transparent. Let's take a minute to discuss some approaches to tackling these problems.
 
-## Experiment and Solve for Individual Cases First
+## Experiment and solve for individual cases first
 
 Before trying to write a function to apply to an entire series, it's typically easier to attempt to solve for an individual case. For example, if we're trying to determine the number of words in a review, we can try and do this for a single review first.
 
@@ -238,7 +236,7 @@ First, choose an example field that you'll be applying the function to.
 
 
 ```python
-example = df.text.iloc[0]
+example = df['text'].iloc[0]
 example
 ```
 
@@ -338,22 +336,22 @@ len(example.split())
 
 
 ```python
-df.text.map(lambda x: len(x.split())).head()
+df['text'].map(lambda x: len(x.split())).head()
 ```
 
 
 
 
-    0    58
-    1    30
-    2    30
-    3    82
-    4    32
+    1     58
+    2     30
+    4     30
+    5     82
+    10    32
     Name: text, dtype: int64
 
 
 
-## Watch for Edge Cases and Exceptions
+## Watch for edge cases and exceptions
 
 When generalizing from a single case to all cases, it's important to consider exceptions or edge cases. For example, in the above example, you might wonder whether extra spaces or punctuations effects the output.
 
@@ -369,7 +367,7 @@ When generalizing from a single case to all cases, it's important to consider ex
 
 
 
-As you can see, extra spaces won't break our fucntion, but missing a space after punctuation will. Perhaps this is a rare enough event that we don't worry further, but exceptions are always something to consider when writing functions.
+As you can see, extra spaces won't break our function, but missing a space after punctuation will. Perhaps this is a rare enough event that we don't worry further, but exceptions are always something to consider when writing functions.
 
 ## Other Common Patterns: the % and // operators
 
@@ -380,7 +378,7 @@ Useful for queries such as 'every other element' or 'every fifth element' etc.
 
 
 ```python
-#Try a single example
+# Try a single example
 3%2
 ```
 
@@ -405,7 +403,7 @@ Useful for queries such as 'every other element' or 'every fifth element' etc.
 
 
 ```python
-#Generalize the pattern: every other
+# Generalize the pattern: every other
 for i in range(10):
     print('i: {}, i%2: {}'.format(i, i%2))
 ```
@@ -427,7 +425,7 @@ Useful for creating groups of a set size. For example: groups of ten, groups of 
 
 
 ```python
-#Try a single example
+# Try a single example
 ```
 
 
@@ -456,7 +454,7 @@ Useful for creating groups of a set size. For example: groups of ten, groups of 
 
 
 ```python
-#Generalize the pattern: every other
+# Generalize the pattern: every other
 for i in range(10):
     print('i: {}, i//2: {}'.format(i, i//3))
 ```
