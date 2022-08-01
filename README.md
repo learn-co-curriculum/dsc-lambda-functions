@@ -1,4 +1,3 @@
-
 # Lambda Functions
 
 ## Introduction
@@ -6,7 +5,9 @@
 Lambda functions are often a convenient way to write *throw-away* functions on the fly. If you need to write a more complicated function you may still need to use the more formal `def` method, but lambda functions provide a quick and concise way to write functions.
 
 ## Objectives
+
 You will be able to:
+
 * Describe the purpose of lambda functions, when they should be employed, and their limitations   
 * Create lambda functions to use as arguments of other functions   
 * Use the `.map()` or `.apply()` method to apply a function to a pandas series or DataFrame
@@ -517,7 +518,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_37_0.png)
+    
 
 
 ## Summary
