@@ -392,6 +392,7 @@ Useful for queries such as 'every other element' or 'every fifth element' etc.
 
 
 ```python
+# and another
 2%2
 ```
 
@@ -406,7 +407,7 @@ Useful for queries such as 'every other element' or 'every fifth element' etc.
 ```python
 # Generalize the pattern: every other
 for i in range(10):
-    print('i: {}, i%2: {}'.format(i, i%2))
+    print(f'i: {i}, i%2: {i%2}')
 ```
 
     i: 0, i%2: 0
@@ -427,49 +428,43 @@ Useful for creating groups of a set size. For example: groups of ten, groups of 
 
 ```python
 # Try a single example
-```
-
-
-```python
 9//3
 ```
 
 
-
-
-    3
-
-
-
-
 ```python
+# and another
 5//3
 ```
 
 
-
-
-    1
-
-
-
-
 ```python
-# Generalize the pattern: every other
-for i in range(10):
-    print('i: {}, i//2: {}'.format(i, i//3))
+# Creating groups of 7
+for i in range(21):
+    print(f'i: {i}, i//7: {i//7}')
 ```
 
-    i: 0, i//2: 0
-    i: 1, i//2: 0
-    i: 2, i//2: 0
-    i: 3, i//2: 1
-    i: 4, i//2: 1
-    i: 5, i//2: 1
-    i: 6, i//2: 2
-    i: 7, i//2: 2
-    i: 8, i//2: 2
-    i: 9, i//2: 3
+    i: 0, i//7: 0
+    i: 1, i//7: 0
+    i: 2, i//7: 0
+    i: 3, i//7: 0
+    i: 4, i//7: 0
+    i: 5, i//7: 0
+    i: 6, i//7: 0
+    i: 7, i//7: 1
+    i: 8, i//7: 1
+    i: 9, i//7: 1
+    i: 10, i//7: 1
+    i: 11, i//7: 1
+    i: 12, i//7: 1
+    i: 13, i//7: 1
+    i: 14, i//7: 2
+    i: 15, i//7: 2
+    i: 16, i//7: 2
+    i: 17, i//7: 2
+    i: 18, i//7: 2
+    i: 19, i//7: 2
+    i: 20, i//7: 2
 
 
 ### Combining % and //
@@ -480,7 +475,7 @@ Below we iterate through 12 elements arranging them into 3 rows and 4 columns.
 
 ```python
 for i in range(12):
-    print('i: {}, Row: {} Column: {}'.format(i, i//4, i%4))
+    print(f'i: {i}, Row: {i//4} Column: {i%4}')
 ```
 
     i: 0, Row: 0 Column: 0
@@ -513,13 +508,13 @@ for i in range(12):
     col = i%4
     ax = axes[row, col]
     ax.scatter(x, x**i)
-    ax.set_title('Plot of x^{}'.format(i))
+    ax.set_title(f'Plot of x^{i}')
 plt.show()
 ```
 
 
     
-![png](index_files/index_37_0.png)
+![png](index_files/index_36_0.png)
     
 
 
